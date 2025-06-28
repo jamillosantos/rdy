@@ -63,7 +63,7 @@ func Wait(ctx context.Context, req WaitRequest) error {
 	}()
 	select {
 	case <-ctx.Done():
-		return ErrTimeout
+		return ctx.Err()
 	case <-rdy:
 		return nil
 	}
